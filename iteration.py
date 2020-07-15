@@ -56,7 +56,8 @@ class FieldViewer(HasTraits):
         # r = lidar[:, 3]  # reflectance value of point
         d = np.sqrt(x ** 2 + y ** 2)  # Map Distance from sensor
 
-        # fig = self.scene.mlab.figure(bgcolor=(0, 0, 0))
+        self.scene.mlab.clf()  # clear last frame
+
         self.scene.mlab.points3d(x, y, z,
                              d,
                              mode="point",
@@ -65,6 +66,9 @@ class FieldViewer(HasTraits):
 
         # lock the initial view point
         self.scene.mlab.view(azimuth=180, elevation=80, distance=40, focalpoint=(0, 0, 0))
+
+        # add colorbar
+        self.scene.mlab.colorbar()
 
 
 if __name__ == '__main__':
